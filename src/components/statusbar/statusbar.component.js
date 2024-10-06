@@ -23,7 +23,7 @@ class Statusbar extends Component {
   }
 
   imports() {
-    return [this.resources.fonts.roboto, this.resources.icons.material, this.resources.libs.awoo];
+    return [this.resources.icons.material, this.resources.libs.awoo];
   }
 
   style() {
@@ -64,7 +64,8 @@ class Statusbar extends Component {
       #tabs ul li:not(:last-child) {
           width: 35px;
           text-align: center;
-          font: 700 13px 'Yu Gothic', serif;
+          font: 700 13px JetBrainsMono Nerd Font;
+          src: url(../fonts/jetbrains-mono.ttf);
           color: ${CONFIG.palette.text};
           padding: 6px 0;
           transition: all .1s;
@@ -74,6 +75,7 @@ class Statusbar extends Component {
       }
 
       #tabs ul li:not(:last-child):hover {
+          border-radius: 10px;
           background: ${CONFIG.palette.surface0};
       }
 
@@ -242,12 +244,7 @@ class Statusbar extends Component {
 
     if (target.shadow && target.shadow.activeElement) return;
 
-    let activeTab = -1;
-    this.refs.tabs.forEach((tab, index) => {
-      if (tab.getAttribute("active") === "") {
-        activeTab = index;
-      }
-    });
+    let activeTab = this.getActiveTab();
 
     if (wheelDelta < 0) {
       this.activateByKey((activeTab + 1) % (this.refs.tabs.length - 1));
@@ -265,6 +262,15 @@ class Statusbar extends Component {
 
     if (Number.isInteger(parseInt(key)) && key <= this.externalRefs.categories.length) {
       this.activateByKey(key - 1);
+    }
+
+    let activeTab = this.getActiveTab();
+    key = key.toLowerCase();
+
+    if (key === "arrowright" || key === "l") {
+      this.activateByKey((activeTab + 1) % (this.refs.tabs.length - 1));
+    } else if (key === "arrowleft" || key === "h") {
+      this.activateByKey(activeTab - 1 < 0 ? this.refs.tabs.length - 2 : activeTab - 1);
     }
   }
 
@@ -295,5 +301,15 @@ class Statusbar extends Component {
       this.setEvents();
       this.openLastVisitedTab();
     });
+  }
+
+  getActiveTab() {
+    let activeTab = -1;
+    this.refs.tabs.forEach((tab, index) => {
+      if (tab.getAttribute("active") === "") {
+        activeTab = index;
+      }
+    });
+    return activeTab;
   }
 }
