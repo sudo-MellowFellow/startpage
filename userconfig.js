@@ -1,19 +1,19 @@
 // latte / frappe / macchiato / mocha
-const palette = macchiato;
+const palette = mocha;
 
 const default_config = {
   overrideStorage: true,
   temperature: {
-    location: "London",
+    location: "Sydney",
     scale: "C",
   },
   clock: {
-    format: "h:i p",
-    iconColor: palette.maroon,
+    format: "d/m/Y - h:i:s",
+    iconColor: palette.mauve,
   },
   disabled: [],
   fastlink: "https://app.raindrop.io",
-  openLastVisitedTab: true,
+  openLastVisitedTab: false,
   tabs: [
     {
       name: "myself",

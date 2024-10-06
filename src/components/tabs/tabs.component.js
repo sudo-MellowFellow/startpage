@@ -26,7 +26,7 @@ class Links extends Component {
                 .map(
                   (link) => `
                   <div class="link-info">
-                    <a href="${link.url}" target="_blank">
+                    <a href="${link.url}">
                       ${Links.getIcon(link)}
                       ${link.name ? `<p class="link-name">${link.name}</p>` : ""}
                     </a>
@@ -130,7 +130,7 @@ class Tabs extends Component {
           height: 100%;
           right: 100%;
           background: ${CONFIG.palette.base} url("../img/bg-1.gif") repeat left;
-          transition: all .6s;
+          transition: all .5s;
           # animation: scroll 25s ease-in-out infinite;
       }
 

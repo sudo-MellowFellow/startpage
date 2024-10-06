@@ -242,14 +242,9 @@ class Statusbar extends Component {
 
     if (target.shadow && target.shadow.activeElement) return;
 
-    let activeTab = -1;
-    this.refs.tabs.forEach((tab, index) => {
-      if (tab.getAttribute("active") === "") {
-        activeTab = index;
-      }
-    });
+    let activeTab = this.getActiveTab();
 
-    if (wheelDelta > 0) {
+    if (wheelDelta < 0) {
       this.activateByKey((activeTab + 1) % (this.refs.tabs.length - 1));
     } else {
       this.activateByKey(activeTab - 1 < 0 ? this.refs.tabs.length - 2 : activeTab - 1);
@@ -265,6 +260,15 @@ class Statusbar extends Component {
 
     if (Number.isInteger(parseInt(key)) && key <= this.externalRefs.categories.length) {
       this.activateByKey(key - 1);
+    }
+
+    let activeTab = this.getActiveTab();
+    key = key.toLowerCase();
+
+    if (key === "arrowright" || key === "l") {
+      this.activateByKey((activeTab + 1) % (this.refs.tabs.length - 1));
+    } else if (key === "arrowleft" || key === "h") {
+      this.activateByKey(activeTab - 1 < 0 ? this.refs.tabs.length - 2 : activeTab - 1);
     }
   }
 
