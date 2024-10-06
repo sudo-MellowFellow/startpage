@@ -9,7 +9,7 @@ const default_config = {
   },
   clock: {
     format: "d/m/Y - h:i:s",
-    iconColor: palette.mauve,
+    iconColor: palette.maroon,
   },
   disabled: [],
   fastlink: "https://app.raindrop.io",
