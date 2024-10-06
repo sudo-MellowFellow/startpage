@@ -242,7 +242,7 @@ class Tabs extends Component {
 
       .categories .links li h1 {
           color: ${CONFIG.palette.text};
-        opacity: 0.5;
+          opacity: 0.5;
           font-size: 13px;
           margin-bottom: 1em;
           font-weight: 600;
