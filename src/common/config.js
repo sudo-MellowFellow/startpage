@@ -1,6 +1,6 @@
 class Config {
   defaults = {
-    overrideStorage: false,
+    overrideStorage: true,
     temperature: {
       location: "Sydney",
       scale: "C",
